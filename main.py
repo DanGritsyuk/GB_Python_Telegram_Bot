@@ -27,5 +27,5 @@ def text_message(message):
             bot.reply_to(message, 'Эй, это не число!')
 
 
-game = Game()
+game = Game(0)
 bot.polling()
