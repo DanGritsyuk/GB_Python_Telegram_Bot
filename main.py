@@ -16,16 +16,19 @@ def send_welcome(message):
 def text_message(message):
     messageText = str(message.text)
     SaveloadFile.SaveToFile('log.txt', f'{message.from_user.first_name} {message.from_user.last_name}: {messageText}\n')
-    if messageText.lower() == 'игра':
+    if messageText.lower() == 'игра' and game.over:
         game.NewGame(message.from_user.id)
         bot.reply_to(message, 'Ок, угадай число! от 1 до 1000')
     elif not game.over and message.from_user.id == game.userId:
         if messageText.isnumeric():
             answer = game.Check(int(messageText))
             bot.reply_to(message, answer)
+        elif messageText.lower() == 'сдаюсь':
+            game.over = True
+            bot.reply_to(message, f'Ну, ок... Число было: {game.number}, ты сдался на {game.attemptsCount} попытке.')
         else:
             bot.reply_to(message, 'Эй, это не число!')
 
 
-game = Game(0)
+game = Game()
 bot.polling()

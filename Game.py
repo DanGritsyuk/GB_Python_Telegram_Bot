@@ -2,8 +2,8 @@ import random
 
 
 class Game:
-    def __init__(self, userId: int):
-        self.NewGame(userId)
+    def __init__(self):
+        self.over = True
 
     def Check(self, num: int):
         self.attemptsCount += 1
