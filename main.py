@@ -28,6 +28,10 @@ def text_message(message):
             bot.reply_to(message, f'Ну, ок... Число было: {game.number}, ты сдался на {game.attemptsCount} попытке.')
         else:
             bot.reply_to(message, 'Эй, это не число!')
+    else:
+        SaveloadFile.JsonSaveToFile(f'Data/questions.txt', {message.from_user.id : messageText})
+        bot.send_message(message.from_user.id, 'Обращение принято! Оператор ответит в ближайшее время.')
+
 
 
 game = Game()

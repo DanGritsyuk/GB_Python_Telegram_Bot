@@ -162,3 +162,4 @@ cython_debug/
 # my
 bot.key
 log.txt
+Data/
